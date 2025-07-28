@@ -14,6 +14,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password --server-id=1 --log-bin=mysql-bin --binlog-format=ROW
     volumes:
       - mysql_data:/var/lib/mysql
+    restart: unless-stopped
 
   express:
     build:
@@ -23,13 +24,12 @@ services:
       - "3000:3000"
     depends_on:
       - mysql
-    volumes:
-      - ./server:/app
     environment:
       DB_HOST: mysql
       DB_USER: testuser
       DB_PASSWORD: testpass
       DB_NAME: testdb
+    restart: unless-stopped
 
 volumes:
   mysql_data:
