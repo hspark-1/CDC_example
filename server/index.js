@@ -17,6 +17,9 @@ app.get("/", (req, res) => {
 // 데이터 저장
 app.post("/submit", (req, res) => {
   const { name, email } = req.body;
+  if (!name || !email) {
+    return res.status(400).send("이름과 이메일은 필수입니다.");
+  }
   db.query(
     "INSERT INTO users (name, email) VALUES (?, ?)",
     [name, email],
@@ -37,4 +40,5 @@ app.get("/users", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
+  console.log("🚀 서버 시작!");
 });
