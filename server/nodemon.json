@@ -1,0 +1,5 @@
+{
+  "watch": ["index.js", "db.js", "views"],
+  "ext": "js,json,html",
+  "ignore": ["node_modules"]
+}
